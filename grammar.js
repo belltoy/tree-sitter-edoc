@@ -11,7 +11,7 @@ module.exports = grammar({
 
     _line: ($) => choice($._separator, $.section, $._tag_line, $._text_line),
 
-    _separator: ($) => seq("=====", /=*/),
+    _separator: ($) => choice(seq("=====", /=*/), seq("-----", /-*/)),
 
     _tag_line: ($) =>
       choice(
