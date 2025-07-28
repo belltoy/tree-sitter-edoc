@@ -1,4 +1,5 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "edoc",
   "rules": {
     "source": {
@@ -928,7 +929,7 @@
               },
               {
                 "type": "PATTERN",
-                "value": "x{[\\da-fA-F]+}"
+                "value": "x\\{[\\da-fA-F]+\\}"
               },
               {
                 "type": "PATTERN",
@@ -962,6 +963,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }
-
