@@ -158,6 +158,18 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "external_link"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },

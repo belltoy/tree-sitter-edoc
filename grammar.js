@@ -25,7 +25,8 @@ module.exports = grammar({
       seq(
         alias("@author", $.tag),
         repeat($._word),
-        optional(alias($.xhtml_tag, $.email_address))
+        optional(alias($.xhtml_tag, $.email_address)),
+        optional($.external_link)
       ),
 
     _see_line: ($) => seq(alias("@see", $.tag), $.expression),
