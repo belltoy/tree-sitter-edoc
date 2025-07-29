@@ -242,6 +242,10 @@
           {
             "type": "SYMBOL",
             "name": "quote_escape"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "external_link"
           }
         ]
       }
@@ -732,6 +736,27 @@
     "quote_escape": {
       "type": "PATTERN",
       "value": "`'"
+    },
+    "external_link": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SYMBOL",
+          "name": "link"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "link": {
+      "type": "PATTERN",
+      "value": "(https?|ftp|file):\\/\\/[^\\s\\]]+"
     },
     "inline_quote": {
       "type": "CHOICE",

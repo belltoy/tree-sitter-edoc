@@ -45,7 +45,8 @@ module.exports = grammar({
           $._xhtml_tag,
           $.inline_quote,
           $.block_quote,
-          $.quote_escape
+          $.quote_escape,
+          $.external_link
         )
       ),
 
@@ -105,6 +106,14 @@ module.exports = grammar({
     macro_escape: ($) => choice("@{", "@}", "@@"),
 
     quote_escape: ($) => /`'/,
+
+    external_link: ($) => seq(
+        "[",
+        $.link,
+        "]"
+    ),
+
+    link: ($) => /(https?|ftp|file):\/\/[^\s\]]+/,
 
     inline_quote: ($) =>
       choice($._inline_quote, $._double_inline_quote, $._triple_inline_quote),
