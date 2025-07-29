@@ -768,10 +768,6 @@
         {
           "type": "SYMBOL",
           "name": "_double_inline_quote"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_triple_inline_quote"
         }
       ]
     },
@@ -779,16 +775,31 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "`"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "`"
+          },
+          "named": true,
+          "value": "quote_marker"
         },
         {
-          "type": "PATTERN",
-          "value": "[^']+"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[^']+"
+          },
+          "named": true,
+          "value": "quote_content"
         },
         {
-          "type": "STRING",
-          "value": "'"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "'"
+          },
+          "named": true,
+          "value": "quote_marker"
         }
       ]
     },
@@ -796,39 +807,34 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "``"
-        },
-        {
-          "type": "REPEAT",
+          "type": "ALIAS",
           "content": {
-            "type": "PATTERN",
-            "value": "([^`']|')"
-          }
+            "type": "STRING",
+            "value": "``"
+          },
+          "named": true,
+          "value": "quote_marker"
         },
         {
-          "type": "STRING",
-          "value": "''"
-        }
-      ]
-    },
-    "_triple_inline_quote": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "```"
-        },
-        {
-          "type": "REPEAT",
+          "type": "ALIAS",
           "content": {
-            "type": "PATTERN",
-            "value": "([^'\\r\\n]|')"
-          }
+            "type": "REPEAT",
+            "content": {
+              "type": "PATTERN",
+              "value": "([^`']|')"
+            }
+          },
+          "named": true,
+          "value": "quote_content"
         },
         {
-          "type": "STRING",
-          "value": "'''"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "''"
+          },
+          "named": true,
+          "value": "quote_marker"
         }
       ]
     },

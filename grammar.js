@@ -118,8 +118,14 @@ module.exports = grammar({
     inline_quote: ($) =>
       choice($._inline_quote, $._double_inline_quote),
 
-    _inline_quote: ($) => seq("`", /[^']+/, "'"),
-    _double_inline_quote: ($) => seq("``", repeat(/([^`']|')/), "''"),
+    _inline_quote: ($) => seq(
+        alias("`", $.quote_marker),
+        alias(/[^']+/, $.quote_content),
+        alias("'", $.quote_marker)),
+    _double_inline_quote: ($) => seq(
+        alias("``", $.quote_marker),
+        alias(repeat(/([^`']|')/), $.quote_content),
+        alias("''", $.quote_marker)),
     // _triple_inline_quote: ($) => seq("```", repeat(/([^'\r\n]|')/), "'''"),
 
     block_quote: ($) =>

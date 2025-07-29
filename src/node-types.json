@@ -137,7 +137,21 @@
   {
     "type": "inline_quote",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "quote_content",
+          "named": true
+        },
+        {
+          "type": "quote_marker",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "macro",
@@ -373,14 +387,6 @@
     "named": false
   },
   {
-    "type": "''",
-    "named": false
-  },
-  {
-    "type": "'''",
-    "named": false
-  },
-  {
     "type": "(",
     "named": false
   },
@@ -438,18 +444,6 @@
   },
   {
     "type": "]",
-    "named": false
-  },
-  {
-    "type": "`",
-    "named": false
-  },
-  {
-    "type": "``",
-    "named": false
-  },
-  {
-    "type": "```",
     "named": false
   },
   {
