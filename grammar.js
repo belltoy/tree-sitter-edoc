@@ -1,4 +1,4 @@
-const WHITE_SPACE = /[\x01-\x20\x80-\xA0]/;
+const WHITE_SPACE = /[\x01-\x09\x11-\x20\x80-\xA0]+/;
 
 module.exports = grammar({
   name: "edoc",
@@ -8,7 +8,17 @@ module.exports = grammar({
   rules: {
     source: ($) => repeat($._line),
 
-    _line: ($) => prec.left(choice($._separator, $.section, $._tag_line, $._text_line)),
+    _line: ($) => seq(
+      optional(
+        choice(
+          alias($._separator, $.separator),
+          $.section,
+          $._tag_line,
+          alias($._text_line, $.text_line),
+        ),
+      ),
+      alias($._terminator, $.terminator),
+    ),
 
     _separator: ($) => choice(seq("=====", /=*/), seq("-----", /-*/)),
 
@@ -17,14 +27,18 @@ module.exports = grammar({
         $._author_line,
         $._see_line,
         $._param_line,
-        prec.left(seq($.tag, optional($._text_line))),
+        prec.left(seq($.tag, optional(alias($._text_line, $.text_line)))),
       ),
 
     _author_line: ($) => prec.left(seq(
         alias("@author", $.tag),
-        repeat($._word),
-        optional(alias($.xhtml_tag, $.email_address)),
-        optional($.external_link)
+        repeat(
+          choice(
+            $._word,
+            alias($.xhtml_tag, $.email_address),
+            $.external_link,
+          )
+        )
       )),
 
     _see_line: ($) => seq(alias("@see", $.tag), $.expression),
@@ -44,7 +58,7 @@ module.exports = grammar({
           $.inline_quote,
           $.block_quote,
           $.quote_escape,
-          $.external_link
+          $.external_link,
         )
       ),
 
@@ -97,6 +111,7 @@ module.exports = grammar({
           $.xhtml_tag,
           $.inline_quote,
           $.quote_escape,
+          $._terminator
         )
       ),
 
@@ -104,16 +119,12 @@ module.exports = grammar({
 
     quote_escape: ($) => /`'/,
 
-    external_link: ($) => seq(
-        "[",
-        $.link,
-        "]"
-    ),
+    external_link: ($) => seq("[", $.link, "]"),
 
-    link: ($) => /(https?|ftp|file):\/\/[^\s\]]+/,
+    link: ($) => /(https?|ftp|file):\/\/[^\s\]\r\n]+/,
 
     inline_quote: ($) =>
-      choice($._inline_quote, $._double_inline_quote),
+      choice($._inline_quote, $._double_inline_quote, $._triple_inline_quote),
 
     _inline_quote: ($) => seq(
         alias("`", $.quote_marker),
@@ -123,23 +134,25 @@ module.exports = grammar({
         alias("``", $.quote_marker),
         alias(repeat(/([^`']|')/), $.quote_content),
         alias("''", $.quote_marker)),
-    // _triple_inline_quote: ($) => seq("```", repeat(/([^'\r\n]|')/), "'''"),
+    _triple_inline_quote: ($) => seq(
+      alias("```", $.quote_marker),
+      alias(repeat(/[^'\r\n]/), $.quote_content),
+      alias("'''", $.quote_marker)),
 
     block_quote: ($) =>
       seq(
-        alias("```", $.quote_marker),
-        optional(field("language", $.language_identifier)),
-        $.quote_content,
-        alias("'''", $.quote_marker)
+        token.immediate(seq(
+          alias("```", $.quote_marker),
+          optional(field("language", alias(/[\w_-]+/, $.language_identifier))),
+          /\r?\n/,
+        )),
+        repeat(alias(seq(repeat(/([^\n']|')/), $._terminator), $.quote_content)),
+        alias("'''", $.quote_marker),
       ),
-
-    language_identifier: ($) => /[\w_-]+\r?\n/,
 
     quote_content: ($) => repeat1(/([^']|')/),
 
-    // _terminator: ($) => /\r?\n/,
-
-    // _double_terminator: ($) => /\r?\n\r?\n+/,
+    _terminator: ($) => /\r?\n/,
 
     _word: ($) => token(prec(-1, /([^ \t\n\r<{`]|<\{`)+/)),
 

@@ -17,18 +17,7 @@
   {
     "type": "block_quote",
     "named": true,
-    "fields": {
-      "language": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "language_identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
@@ -258,6 +247,11 @@
     }
   },
   {
+    "type": "separator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "source",
     "named": true,
     "root": true,
@@ -307,11 +301,23 @@
           "named": true
         },
         {
+          "type": "separator",
+          "named": true
+        },
+        {
           "type": "strong_xhtml_tag",
           "named": true
         },
         {
           "type": "tag",
+          "named": true
+        },
+        {
+          "type": "terminator",
+          "named": true
+        },
+        {
+          "type": "text_line",
           "named": true
         },
         {
@@ -348,6 +354,49 @@
     "type": "tag",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "text_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "block_quote",
+          "named": true
+        },
+        {
+          "type": "em_xhtml_tag",
+          "named": true
+        },
+        {
+          "type": "external_link",
+          "named": true
+        },
+        {
+          "type": "inline_quote",
+          "named": true
+        },
+        {
+          "type": "macro",
+          "named": true
+        },
+        {
+          "type": "quote_escape",
+          "named": true
+        },
+        {
+          "type": "strong_xhtml_tag",
+          "named": true
+        },
+        {
+          "type": "xhtml_tag",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "type",
@@ -455,10 +504,6 @@
     "named": true
   },
   {
-    "type": "language_identifier",
-    "named": true
-  },
-  {
     "type": "link",
     "named": true
   },
@@ -480,6 +525,10 @@
   },
   {
     "type": "section_marker",
+    "named": true
+  },
+  {
+    "type": "terminator",
     "named": true
   },
   {
