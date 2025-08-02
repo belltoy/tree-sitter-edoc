@@ -6,7 +6,10 @@ inline quote
 --------------------------------------------------------------------------------
 
 (source
-  (inline_quote))
+  (inline_quote
+    (quote_marker)
+    (quote_content)
+    (quote_marker)))
 
 ================================================================================
 inline quote across lines
@@ -17,7 +20,10 @@ result}'
 --------------------------------------------------------------------------------
 
 (source
-  (inline_quote))
+  (inline_quote
+    (quote_marker)
+    (quote_content)
+    (quote_marker)))
 
 ================================================================================
 inline quotes overlapping with word tokens
@@ -27,9 +33,18 @@ inline quotes overlapping with word tokens
 --------------------------------------------------------------------------------
 
 (source
-  (inline_quote)
-  (inline_quote)
-  (inline_quote))
+  (inline_quote
+    (quote_marker)
+    (quote_content)
+    (quote_marker))
+  (inline_quote
+    (quote_marker)
+    (quote_content)
+    (quote_marker))
+  (inline_quote
+    (quote_marker)
+    (quote_content)
+    (quote_marker)))
 
 ================================================================================
 double inline-quote
@@ -39,7 +54,10 @@ double inline-quote
 --------------------------------------------------------------------------------
 
 (source
-  (inline_quote))
+  (inline_quote
+    (quote_marker)
+    (quote_content)
+    (quote_marker)))
 
 ================================================================================
 inline quote block
@@ -49,7 +67,10 @@ inline quote block
 --------------------------------------------------------------------------------
 
 (source
-  (inline_quote))
+  (block_quote
+    (quote_marker)
+    (quote_content)
+    (quote_marker)))
 
 ================================================================================
 multiline quote block
