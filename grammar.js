@@ -1,4 +1,4 @@
-const WHITE_SPACE = /[\x01-\x09\x11-\x20\x80-\xA0]+/;
+const WHITE_SPACE = /[\x01-\x20\x80-\xA0]/;
 
 module.exports = grammar({
   name: "edoc",
@@ -6,10 +6,9 @@ module.exports = grammar({
   extras: ($) => [WHITE_SPACE],
 
   rules: {
-    source: ($) =>
-      seq(repeat($._terminator), repeat(seq($._line, repeat1($._terminator)))),
+    source: ($) => repeat($._line),
 
-    _line: ($) => choice($._separator, $.section, $._tag_line, $._text_line),
+    _line: ($) => prec.left(choice($._separator, $.section, $._tag_line, $._text_line)),
 
     _separator: ($) => choice(seq("=====", /=*/), seq("-----", /-*/)),
 
@@ -18,25 +17,23 @@ module.exports = grammar({
         $._author_line,
         $._see_line,
         $._param_line,
-        seq($.tag, optional($._text_line))
+        prec.left(seq($.tag, optional($._text_line))),
       ),
 
-    _author_line: ($) =>
-      seq(
+    _author_line: ($) => prec.left(seq(
         alias("@author", $.tag),
         repeat($._word),
         optional(alias($.xhtml_tag, $.email_address)),
         optional($.external_link)
-      ),
+      )),
 
     _see_line: ($) => seq(alias("@see", $.tag), $.expression),
 
-    _param_line: ($) =>
-      seq(
+    _param_line: ($) => prec.left(seq(
         alias("@param", $.tag),
         alias($._word, $.parameter),
         optional($._text_line)
-      ),
+      )),
 
     _text_line: ($) =>
       repeat1(
@@ -100,7 +97,6 @@ module.exports = grammar({
           $.xhtml_tag,
           $.inline_quote,
           $.quote_escape,
-          $._terminator
         )
       ),
 
@@ -141,9 +137,9 @@ module.exports = grammar({
 
     quote_content: ($) => repeat1(/([^']|')/),
 
-    _terminator: ($) => /\r?\n/,
+    // _terminator: ($) => /\r?\n/,
 
-    _double_terminator: ($) => /\r?\n\r?\n+/,
+    // _double_terminator: ($) => /\r?\n\r?\n+/,
 
     _word: ($) => token(prec(-1, /([^ \t\n\r<{`]|<\{`)+/)),
 
