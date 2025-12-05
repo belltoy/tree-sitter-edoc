@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/the-mikedavis/tree-sitter-edoc.git"
+    "url": "git+https://github.com/belltoy/tree-sitter-edoc.git"
   },
   "author": "Michael Davis",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/the-mikedavis/tree-sitter-edoc/issues"
   },
-  "homepage": "https://github.com/the-mikedavis/tree-sitter-edoc#readme",
+  "homepage": "https://github.com/belltoy/tree-sitter-edoc#readme",
   "dependencies": {
     "nan": "^2.16.0"
   },

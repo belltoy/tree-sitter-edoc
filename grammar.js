@@ -1,3 +1,11 @@
+/**
+ * @file Edoc grammar for tree-sitter
+ * @author belltoy <belltoy@gmail.com>
+ * @license MIT
+ */
+
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
 const WHITE_SPACE = /[\x01-\x09\x11-\x20\x80-\xA0]+/;
 
 module.exports = grammar({
