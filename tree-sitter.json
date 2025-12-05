@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "tree-sitter-edoc",
+      "camelcase": "Edoc",
+      "title": "Edoc",
+      "scope": "source.edoc",
+      "file-types": [
+        "edoc"
+      ],
+      "injection-regex": "^edoc$",
+      "class-name": "TreeSitterEdoc"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "A tree-sitter grammar for the Erlang documentation generator (Edoc) syntax",
+    "authors": [
+      {
+        "name": "belltoy",
+        "email": "belltoy@gmail.com",
+        "url": "https://github.com/belltoy"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/belltoy/tree-sitter-edoc"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
