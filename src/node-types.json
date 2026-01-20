@@ -83,11 +83,6 @@
     }
   },
   {
-    "type": "email_address",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -355,11 +350,6 @@
     "fields": {}
   },
   {
-    "type": "xhtml_tag",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "xhtml_tag_content",
     "named": true,
     "fields": {},
@@ -411,15 +401,7 @@
     "named": false
   },
   {
-    "type": "<",
-    "named": false
-  },
-  {
     "type": "=====",
-    "named": false
-  },
-  {
-    "type": ">",
     "named": false
   },
   {
@@ -455,6 +437,10 @@
     "named": true
   },
   {
+    "type": "email_address",
+    "named": true
+  },
+  {
     "type": "language_identifier",
     "named": true
   },
@@ -480,6 +466,10 @@
   },
   {
     "type": "section_marker",
+    "named": true
+  },
+  {
+    "type": "xhtml_tag",
     "named": true
   },
   {

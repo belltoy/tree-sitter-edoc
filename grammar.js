@@ -99,7 +99,7 @@ module.exports = grammar({
     em_xhtml_tag: ($) => special_xhtml_tag($, "em"),
     strong_xhtml_tag: ($) => special_xhtml_tag($, "strong"),
 
-    xhtml_tag: ($) => seq("<", repeat(/[^>]/), ">"),
+    xhtml_tag: ($) => /<[/a-zA-Z][^<>]+>/,
 
     xhtml_tag_content: ($) =>
       repeat1(
@@ -153,7 +153,7 @@ module.exports = grammar({
 
     _double_terminator: ($) => /\r?\n\r?\n+/,
 
-    _word: ($) => token(prec(-1, /([^ \t\n\r<{`]|<\{`)+/)),
+    _word: ($) => token(prec(-1, /(([^ \t\n\r<{`]|<\{`)+)|(<[^a-zA-Z].*)/)),
 
     _atom: ($) => choice($._unquoted_atom, $._quoted_atom),
 
