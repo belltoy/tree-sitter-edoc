@@ -41,7 +41,7 @@ The `edoc` parser is not registered in the default `nvim-treesitter` parser list
 vim.api.nvim_create_autocmd('User', {
   pattern = 'TSUpdate',
   callback = function()
-    require('nvim-treesitter.parsers').zimbu = {
+    require('nvim-treesitter.parsers').edoc = {
       install_info = {
         url = 'https://github.com/belltoy/tree-sitter-edoc',
         branch = 'main',
