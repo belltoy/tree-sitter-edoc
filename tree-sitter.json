@@ -16,7 +16,7 @@
     }
   ],
   "metadata": {
-    "version": "0.1.0",
+    "version": "0.0.2",
     "license": "MIT",
     "description": "A tree-sitter grammar for the Erlang documentation generator (Edoc) syntax",
     "authors": [

@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-edoc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tree-sitter grammar for the Erlang documentation generator (Edoc) syntax",
   "main": "bindings/node",
   "keywords": [
