@@ -783,7 +783,7 @@
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[^']+"
+            "value": "[^'`]+"
           },
           "named": true,
           "value": "quote_content"
@@ -791,8 +791,17 @@
         {
           "type": "ALIAS",
           "content": {
-            "type": "STRING",
-            "value": "'"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "'"
+              },
+              {
+                "type": "STRING",
+                "value": "`"
+              }
+            ]
           },
           "named": true,
           "value": "quote_marker"

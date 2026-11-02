@@ -129,8 +129,8 @@ module.exports = grammar({
 
     _inline_quote: ($) => seq(
         alias("`", $.quote_marker),
-        alias(/[^']+/, $.quote_content),
-        alias("'", $.quote_marker)),
+        alias(/[^'`]+/, $.quote_content),
+        alias(choice("'", "`"), $.quote_marker)),
     _double_inline_quote: ($) => seq(
         alias("``", $.quote_marker),
         alias(repeat(/([^`']|')/), $.quote_content),
